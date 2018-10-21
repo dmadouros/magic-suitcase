@@ -1,0 +1,16 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: magic_suitcase_dev
+
+test:
+  <<: *default
+  database: magic_suitcase_test
+
+production:
+  <<: *default
+  database: magic_suitcase_prd
