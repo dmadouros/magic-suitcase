@@ -1,9 +1,7 @@
 <table class="table">
   <thead>
     <th>Set</th>
-    <th>Color</th>
     <th>Name</th>
-    <th>Type</th>
     <th>Quantity</th>
     <th>Actions</th>
   </thead>
@@ -11,9 +9,7 @@
     <% @cards.each do |card| %>
       <tr>
         <td><%= card.card_set.abbreviation %></td>
-        <td><%= card.colors.sort_by(&:sort_index).map(&:abbreviation).join('') %></td>
         <td><%= card.name %></td>
-        <td><%= card.card_type.name %></td>
         <td><%= card.quantity %></td>
         <td>&nbsp;</td>
       </tr>
