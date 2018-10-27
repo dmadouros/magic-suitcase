@@ -40,8 +40,6 @@ namespace :magic_suitcase do
       end
     end
 
-    ap deck_list
-
     results = LoadDeck.new.load_deck(deck_list)
 
     puts "# ORDER"
