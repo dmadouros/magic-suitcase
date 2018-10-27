@@ -23,8 +23,8 @@ namespace :magic_suitcase do
   end
 
   desc "Load Deck"
-  task :load_deck, [:file_path] => :environment do |_, args|
-    file_path = args[:file_path]
+  task :load_deck, [:deck_name] => :environment do |_, args|
+    file_path = File.join(Rails.root, 'decks', "#{args[:deck_name]}.txt")
 
     deck_list = File.open(file_path).reduce([]) do |deck_list, f|
       f.each_line.reduce(deck_list) do |deck_list, record|
