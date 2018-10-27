@@ -1,18 +1,2 @@
-<table class="table">
-  <thead>
-    <th>Set</th>
-    <th>Name</th>
-    <th>Quantity</th>
-    <th>Actions</th>
-  </thead>
-  <tbody>
-    <% @cards.each do |card| %>
-      <tr>
-        <td><%= card.card_set.abbreviation %></td>
-        <td><%= card.name %></td>
-        <td><%= card.quantity %></td>
-        <td>&nbsp;</td>
-      </tr>
-    <% end %>
-  </tbody>
-</table>
+<div id="content"></div>
+<%= javascript_pack_tag 'magic_suitcase' %>
