@@ -1,5 +1,7 @@
 import React from 'react';
 
+import {Link, NavLink} from 'react-router-dom';
+
 const navbar = () => {
   return (
     <nav className="navbar navbar-expand-lg navbar-dark bg-dark">
@@ -11,11 +13,11 @@ const navbar = () => {
       </button>
       <div className="collapse navbar-collapse" id="navbarNavDropdown">
         <ul className="navbar-nav">
-          <li className="nav-item active">
-            <a className="nav-link" href="#">Cards</a>
+          <li className="nav-item">
+            <NavLink className="nav-link" to="/cards">Cards</NavLink>
           </li>
           <li className="nav-item">
-            <a className="nav-link" href="#">Decks</a>
+            <NavLink className="nav-link" to="/decks">Decks</NavLink>
           </li>
         </ul>
       </div>

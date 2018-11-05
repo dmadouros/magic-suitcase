@@ -1,49 +1,31 @@
-import { List } from 'immutable';
-import PropTypes from 'prop-types';
 import React from 'react';
-import { connect } from 'react-redux';
+import {BrowserRouter as Router, Route} from 'react-router-dom';
 
-import * as Cards from 'src/reducer';
-import * as actions from './actions';
-import CardTable from './components/CardTable/CardTable';
 import Navbar from './components/Navbar/Navbar';
-import Title from './components/Title/Title';
+import Cards from './components/Cards/Cards';
+import Decks from './components/Decks/Decks';
+import AddDeck from './components/Decks/AddDeck';
+import ShowDeck from './components/Decks/ShowDeck';
+import Order from './components/Order/Order';
 
 export const App = class extends React.Component {
-  componentDidMount() {
-    this.props.fetchCardSets();
-    this.props.fetchCards();
-  }
-
   render() {
     return (
-      <div>
-        <Navbar />
-        <div className="container">
-          <Title />
-          <CardTable
-            cards={this.props.cards}
-            onIncrement={this.props.incrementQuantity}
-            onDecrement={this.props.decrementQuantity}
-          />
+      <Router>
+        <div>
+          <Navbar/>
+          <div className="container">
+            <Route path="/" exact component={Cards}/>
+            <Route path="/cards" component={Cards}/>
+            <Route path="/decks" exact component={Decks}/>
+            <Route path="/decks/new" exact component={AddDeck}/>
+            <Route path="/decks/:id" component={ShowDeck}/>
+            <Route path="/order/new" component={Order}/>
+          </div>
         </div>
-      </div>
+      </Router>
     );
   }
 };
 
-App.defaultProps = {
-  cards: List(),
-};
-
-App.propTypes = {
-  cards: PropTypes.instanceOf(List),
-};
-
-const mapStateToProps = (state) => {
-  return {
-    cards: Cards.getCards(state),
-  };
-};
-
-export default connect(mapStateToProps, actions)(App);
+export default App;

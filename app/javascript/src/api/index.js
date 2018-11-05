@@ -20,3 +20,15 @@ export function fetchCards() {
 export function updateCard(cardId, quantity) {
   return client.patch(`/cards/${cardId}`, {quantity: quantity});
 }
+
+export function createDeck(name, deckContents) {
+  return client.post('/decks', {name, deckContents});
+}
+
+export function fetchDecks() {
+  return client.get('/decks');
+}
+
+export function buildDeck(id) {
+  return client.get(`/decks/${id}/build`)
+}
