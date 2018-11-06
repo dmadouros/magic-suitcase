@@ -121,10 +121,11 @@ export function saveDeck() {
   };
 }
 
-export function buildDeck(id) {
+export function buildDeck(history, id) {
   return dispatch => {
     api.buildDeck(id).then(resp => {
       dispatch(buildDeckSucceeded(resp.data));
+      history.push('/orders/new');
     })
   };
 }

@@ -12,9 +12,7 @@ class Decks extends Component {
   }
 
   render() {
-    if (this.props.orderLoaded) {
-      return <Redirect push to="order/new" />
-    }
+    console.log(this.props)
 
     const decks = this.props.decks.valueSeq().map((deck, _) => (
       <tr key={deck.get('id')}>
@@ -28,7 +26,7 @@ class Decks extends Component {
           </Link>
           <button
             className="btn btn-outline-secondary btn-small"
-            onClick={() => this.props.buildDeck(deck.get('id'))}
+            onClick={() => this.props.buildDeck(this.props.history, deck.get('id'))}
           >
             Build
           </button>
