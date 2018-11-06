@@ -110,13 +110,14 @@ export function saveDeckSucceeded() {
   }
 }
 
-export function saveDeck() {
+export function saveDeck(history) {
   return (dispatch, getState) => {
     const name = getState().cards.get('deckName');
     const deckContents = getState().cards.get('deckContents');
 
     api.createDeck(name, deckContents).then(resp => {
       dispatch(saveDeckSucceeded());
+      history.push('/decks');
     });
   };
 }

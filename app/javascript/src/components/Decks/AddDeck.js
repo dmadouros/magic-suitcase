@@ -53,7 +53,7 @@ class AddDeck extends Component {
               </Link>
               <button
                 className="btn btn-outline-dark"
-                onClick={this.props.saveDeck}
+                onClick={() => this.props.saveDeck(this.props.history)}
               >
                 Save
               </button>
