@@ -12,8 +12,6 @@ class Decks extends Component {
   }
 
   render() {
-    console.log(this.props)
-
     const decks = this.props.decks.valueSeq().map((deck, _) => (
       <tr key={deck.get('id')}>
         <td>{deck.get('name')}</td>

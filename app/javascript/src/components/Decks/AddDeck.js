@@ -15,6 +15,11 @@ class AddDeck extends Component {
     this.props.setDeckName(e.target.value);
   }
 
+  onSave = (e) => {
+    e.preventDefault();
+    this.props.saveDeck(this.props.history);
+  }
+
   render() {
     return (
       <div>
@@ -53,7 +58,7 @@ class AddDeck extends Component {
               </Link>
               <button
                 className="btn btn-outline-dark"
-                onClick={() => this.props.saveDeck(this.props.history)}
+                onClick={this.onSave}
               >
                 Save
               </button>
