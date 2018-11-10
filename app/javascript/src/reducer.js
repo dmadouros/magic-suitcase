@@ -75,11 +75,14 @@ export default (state = INITIAL_STATE, action) => {
       const card = state.get('cards').get(action.payload.cardId);
       return state.setIn(['cards', action.payload.cardId, 'quantity'], card.get('quantity') - 1)
     }
+    case 'FETCH_DECKS_STARTED': {
+      return state.set('isLoading', true);
+    }
     case 'FETCH_DECKS_SUCCEEDED': {
       return state
         .setIn(['decks', 'entities'], fromJS(action.payload.decks.entities))
-        .setIn(['decks', 'ids'], fromJS(action.payload.decks.ids));
-      ;
+        .setIn(['decks', 'ids'], fromJS(action.payload.decks.ids))
+        .set('isLoading', false);
     }
     case 'SET_DECK_CONTENTS': {
       return state.set('deckContents', action.payload.deckContents);

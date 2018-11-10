@@ -69,8 +69,16 @@ export function decrementQuantity(cardId) {
 /*
  * DECKS
  */
+export function fetchDecksStarted() {
+  return {
+    type: 'FETCH_DECKS_STARTED'
+  }
+}
+
 export function fetchDecks() {
   return dispatch => {
+    dispatch(fetchDecksStarted());
+
     api.fetchDecks().then(resp => {
       dispatch(fetchDecksSucceeded(resp.data));
     });

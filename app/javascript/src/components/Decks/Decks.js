@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
 import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
+import ReactSpinner from 'react-spinjs-fix';
 
 import * as actions from "../../actions";
 import * as selectors from 'src/reducer';
@@ -13,6 +14,10 @@ class Decks extends Component {
   }
 
   render() {
+    if (this.props.isLoading) {
+      return <ReactSpinner />
+    }
+
     const decks = this.props.decks.map((deck) => (
       <tr key={deck.id}>
         <td>{deck.name}</td>
@@ -87,6 +92,7 @@ const mapStateToProps = (state) => {
   return {
     decks: selectors.getDecks(state),
     filterName: selectors.getDeckFilterName(state),
+    isLoading: state.cards.get('isLoading'),
   };
 };
 
