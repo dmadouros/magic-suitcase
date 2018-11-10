@@ -211,5 +211,24 @@ describe 'LoadDeck' do
         end
       end
     end
+
+    context 'when deck list has same card in main deck and sideboard' do
+      it 'consolidates cards for order' do
+        card_set = FactoryBot.create(:card_set, name: 'Dominaria', abbreviation: 'DOM')
+
+        FactoryBot.create(:card, name: 'Luminous Bonds', card_set: card_set, quantity: 4)
+
+        subject = LoadDeck.new
+        results = subject.load_deck([
+          { quantity: 3, name: 'Luminous Bonds' },
+          { quantity: 1, name: 'Luminous Bonds' }
+        ])
+
+        expect(results[:order]).to be_empty
+        expect(results[:picklist]).to eq([
+          { quantity: 4, name: 'Luminous Bonds', card_set: 'DOM' }
+        ])
+      end
+    end
   end
 end

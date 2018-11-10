@@ -1,5 +1,7 @@
 class LoadDeck
   def load_deck(deck_list)
+    deck_list = consolidate_duplicates(deck_list)
+
     {
       order: generate_order(deck_list),
       picklist: generate_picklist(deck_list),
@@ -7,6 +9,20 @@ class LoadDeck
   end
 
   private
+
+  def consolidate_duplicates(deck_list)
+    deck_list.reduce({}) do |memo, card|
+      quantity = if memo.key?(card[:name])
+        memo[card[:name]] + card[:quantity]
+      else
+        card[:quantity]
+      end
+
+      memo.merge(card[:name] => quantity)
+    end.reduce([]) do |memo, (name, quantity)|
+      memo + [{ name: name, quantity: quantity }]
+    end
+  end
 
   def generate_picklist(deck_list)
     deck_list.reduce([]) do |deck_picklist, deck_card|
