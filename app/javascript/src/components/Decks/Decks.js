@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import {FontAwesomeIcon} from '@fortawesome/react-fontawesome'
 
 import * as actions from "../../actions";
 import * as selectors from 'src/reducer';
@@ -15,19 +16,21 @@ class Decks extends Component {
     const decks = this.props.decks.map((deck) => (
       <tr key={deck.id}>
         <td>{deck.name}</td>
-        <td className="text-right">
-          <Link
-            className="btn btn-outline-primary btn-small"
-            to={`/decks/${deck.id}`}
-          >
-            Show
-          </Link>
-          <button
-            className="btn btn-outline-secondary btn-small"
-            onClick={() => this.props.buildDeck(this.props.history, deck.id)}
-          >
-            Build
-          </button>
+        <td>
+          <div className="btn-toolbar justify-content-end">
+            <Link
+              className="btn btn-outline-primary btn-small mr-3"
+              to={`/decks/${deck.id}`}
+            >
+              Show
+            </Link>
+            <button
+              className="btn btn-outline-secondary btn-small"
+              onClick={() => this.props.buildDeck(this.props.history, deck.id)}
+            >
+              Build
+            </button>
+          </div>
         </td>
       </tr>
     ));
@@ -36,21 +39,29 @@ class Decks extends Component {
       <div>
         <Title>Decks</Title>
         <div className="row">
-          <p className="col">
-            <Link
-              className="btn btn-outline-dark"
-              to="/decks/new">
-              Add Deck
-            </Link>
-          </p>
-          <p className="col text-right">
-            <input
-              type="text"
-              value={this.props.filterName}
-              onChange={(e) => this.props.setDeckNameFilter(e.target.value)}
-              placeholder="Filter by name"
-            />
-          </p>
+          <div className="col">
+            <div className="btn-toolbar justify-content-between mb-3">
+              <Link
+                className="btn btn-outline-dark"
+                to="/decks/new">
+                Add Deck
+              </Link>
+              <div className="input-group">
+                <div className="input-group-prepend">
+                <span className="input-group-text">
+                  <FontAwesomeIcon icon="search"/>
+                </span>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.props.filterName}
+                  onChange={(e) => this.props.setDeckNameFilter(e.target.value)}
+                  placeholder="Filter by name"
+                />
+              </div>
+            </div>
+          </div>
         </div>
         <div className="row">
           <div className="col">
