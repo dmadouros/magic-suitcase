@@ -2,6 +2,7 @@ import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ClipboardJS from 'clipboard';
 import ReactSpinner from 'react-spinjs-fix';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 
 import * as actions from "../../actions";
 import Title from "../Title/Title";
@@ -33,7 +34,7 @@ class Order extends Component {
                 className="btn btn-outline-secondary"
                 data-clipboard-target="#order"
               >
-                Copy to clipboard
+                <FontAwesomeIcon icon="copy" /> Copy to Clipboard
               </button>
             </div>
           </div>

@@ -4,12 +4,13 @@ import ReactDOM from 'react-dom'
 import { Provider } from 'react-redux';
 import { library } from '@fortawesome/fontawesome-svg-core'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
-import { faSearch } from '@fortawesome/free-solid-svg-icons'
+import { faSearch, faCopy } from '@fortawesome/free-solid-svg-icons'
 
 import App from '../src/App'
 import store from '../src/store'
 
-library.add(faSearch)
+library.add(faSearch);
+library.add(faCopy);
 
 const MagicSuitcase = class extends React.Component {
   render() {
