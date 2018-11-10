@@ -1,19 +1,17 @@
 Icebox:
- ☐ Separate Show/Build buttons (visual)
  ☐ Search by card name
  ☐ Add tags for decks
  ☐ Filter decks by tags
  ☐ Filter cards by set
- ☐ Sort decks by tag (necessary if you can sort by name and filter tags??)
  ☐ Make it so you can bulk update cards (enter the number directly)
  ☐ Sort cards by name
  ☐ Add tenancy (and authentication)
  ☐ Group picklist by card set
  ☐ Figure out how to be more tolerant of split cards during order/picklist generation (e.g. Flower/Flourish, Flower / Flourish, Flower//Flourish, Flower // Flourish)
  ☐ Show number of cards in deck??
- ☐ Single click copy for order? (like copying the repo on github)
  ☐ show deck name on order page
- ☐ Add search decoration to deck search
+ ☐ add loading icon for decks
+ ☐ add loading icon for build/order
 
 Technical Initiatives
  ☐ Use GraphQL?
@@ -22,5 +20,9 @@ Technical Initiatives
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Single click copy for order? (like copying the repo on github) @done (18-11-10 16:03) @project(Icebox)
+ ✘ Sort decks by tag (necessary if you can sort by name and filter tags??) @cancelled (18-11-10 15:49) @project(Icebox)
+ ✔ Separate Show/Build buttons (visual) @done (18-11-10 15:47) @project(Icebox)
+ ✔ Add search decoration to deck search @done (18-11-10 15:47) @project(Icebox)
  ✔ Search by deck name @done (18-11-10 11:01) @project(Icebox)
  ✔ Sort decks by name @done (18-11-10 10:24) @project(Icebox)

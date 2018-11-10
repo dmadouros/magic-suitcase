@@ -1,18 +1,26 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
+import ClipboardJS from 'clipboard';
 
 import * as actions from "../../actions";
-import * as selectors from 'src/reducer';
 import Title from "../Title/Title";
 
 class Order extends Component {
+  componentDidMount() {
+    this.clipboard = new ClipboardJS('#copy-to-clipboard');
+  }
+
+  componentWillUnmount() {
+    this.clipboard.destroy();
+  }
+
   render() {
     return (
       <div>
         <Title>Order/Picklist</Title>
         <div className="form-group row">
           <div className="col">
-            <label htmlFor="picklist">Order</label>
+            <label htmlFor="order">Order</label>
             <textarea
               id="order"
               className="form-control"
@@ -22,18 +30,23 @@ class Order extends Component {
             />
           </div>
         </div>
-          <div className="form-group row">
-            <div className="col">
-              <label htmlFor="picklist">Picklist</label>
-              <textarea
-                id="picklist"
-                className="form-control"
-                value={this.props.picklist}
-                rows={15}
-                readOnly
-              />
-            </div>
+        <button id="copy-to-clipboard" className="btn"
+                data-clipboard-target="#order"
+        >
+          Cut to clipboard
+        </button>
+        <div className="form-group row">
+          <div className="col">
+            <label htmlFor="picklist">Picklist</label>
+            <textarea
+              id="picklist"
+              className="form-control"
+              value={this.props.picklist}
+              rows={15}
+              readOnly
+            />
           </div>
+        </div>
       </div>
     )
   }

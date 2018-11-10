@@ -19,7 +19,7 @@ class Decks extends Component {
         <td>
           <div className="btn-toolbar justify-content-end">
             <Link
-              className="btn btn-outline-primary btn-small mr-3"
+              className="btn btn-outline-primary btn-small mr-2"
               to={`/decks/${deck.id}`}
             >
               Show
