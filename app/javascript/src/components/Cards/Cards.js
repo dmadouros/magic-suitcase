@@ -8,6 +8,8 @@ import * as actions from '../../actions';
 import CardTable from '../CardTable/CardTable';
 import Title from '../Title/Title';
 import ReactSpinner from 'react-spinjs-fix';
+import {Link} from "react-router-dom";
+import {FontAwesomeIcon} from "@fortawesome/react-fontawesome";
 
 class Cards extends Component {
   componentDidMount() {
@@ -23,6 +25,26 @@ class Cards extends Component {
     return (
       <div>
         <Title>Cards</Title>
+        <div className="row">
+          <div className="col">
+            <div className="btn-toolbar justify-content-end mb-3">
+              <div className="input-group">
+                <div className="input-group-prepend">
+                <span className="input-group-text">
+                  <FontAwesomeIcon icon="search"/>
+                </span>
+                </div>
+                <input
+                  type="text"
+                  className="form-control"
+                  value={this.props.filterName}
+                  onChange={(e) => this.props.setCardNameFilter(e.target.value)}
+                  placeholder="Filter by name"
+                />
+              </div>
+            </div>
+          </div>
+        </div>
         <CardTable
           cards={this.props.cards}
           onIncrement={this.props.incrementQuantity}
@@ -45,6 +67,7 @@ const mapStateToProps = (state) => {
   return {
     cards: selectors.getCards(state),
     isLoading: state.cards.get('isLoading'),
+    filterName: selectors.getCardFilterName(state),
   };
 };
 

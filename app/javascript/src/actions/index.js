@@ -66,6 +66,15 @@ export function decrementQuantity(cardId) {
   };
 }
 
+export function setCardNameFilter(name) {
+  return {
+    type: 'SET_CARD_NAME_FILTER',
+    payload: {
+      name
+    }
+  }
+}
+
 /*
  * DECKS
  */

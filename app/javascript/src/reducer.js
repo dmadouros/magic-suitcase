@@ -2,7 +2,12 @@ import {fromJS, Map, List} from 'immutable';
 
 const INITIAL_STATE = Map({
 
-  cards: Map(),
+  cards: Map({
+    entities: Map(),
+    filters: Map({
+      name: ''
+    })
+  }),
   cardSets: Map(),
   deckContents: '',
   deckName: '',
@@ -22,9 +27,19 @@ const INITIAL_STATE = Map({
 export const getCards = (state) => {
   const cardSets = state.cards.get('cardSets');
 
-  return state.cards.get('cards').valueSeq().map(card => {
-    return card.set('card_set_name', cardSets.get(card.get('card_set_id')).get('abbreviation'));
-  }).toList().sortBy(card => [card.get('card_set_name'), card.get('name')]);
+  return state.cards.get('cards').get('entities').valueSeq()
+    .map(card => {
+      return card.set('card_set_name', cardSets.get(card.get('card_set_id')).get('abbreviation'));
+    })
+    .toList()
+    .filter(card => {
+      if (getCardFilterName(state)) {
+        return (new RegExp(getCardFilterName(state), 'i')).test(card.get('name'));
+      } else {
+        return true;
+      }
+    })
+    .sortBy(card => [card.get('card_set_name'), card.get('name')]);
 };
 
 export const getDeckContents = (state) => {
@@ -56,13 +71,17 @@ export const getDeckFilterName = (state) => {
   return state.cards.get('decks').get('filters').get('name');
 }
 
+export const getCardFilterName = (state) => {
+  return state.cards.get('cards').get('filters').get('name');
+}
+
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'FETCH_CARDS_STARTED': {
       return state.set('isLoading', true);
     }
     case 'FETCH_CARDS_SUCCEEDED': {
-      return state.set('cards', fromJS(action.payload.cards)).set('isLoading', false);
+      return state.setIn(['cards', 'entities'], fromJS(action.payload.cards)).set('isLoading', false);
     }
     case 'FETCH_CARD_SETS_SUCCEEDED': {
       return state.set('cardSets', fromJS(action.payload.cardSets));
@@ -104,6 +123,9 @@ export default (state = INITIAL_STATE, action) => {
     }
     case 'SET_DECK_NAME_FILTER': {
       return state.setIn(['decks', 'filters', 'name'], action.payload.name);
+    }
+    case 'SET_CARD_NAME_FILTER': {
+      return state.setIn(['cards', 'filters', 'name'], action.payload.name);
     }
     default: {
       return state;
