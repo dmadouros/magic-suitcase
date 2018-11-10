@@ -1,6 +1,6 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
-import {Link, Redirect} from 'react-router-dom';
+import {Link} from 'react-router-dom';
 
 import * as actions from "../../actions";
 import * as selectors from 'src/reducer';
@@ -12,19 +12,19 @@ class Decks extends Component {
   }
 
   render() {
-    const decks = this.props.decks.valueSeq().map((deck, _) => (
-      <tr key={deck.get('id')}>
-        <td>{deck.get('name')}</td>
+    const decks = this.props.decks.map((deck) => (
+      <tr key={deck.id}>
+        <td>{deck.name}</td>
         <td>
           <Link
             className="btn btn-outline-primary btn-small"
-            to={`/decks/${deck.get('id')}`}
+            to={`/decks/${deck.id}`}
           >
             Show
           </Link>
           <button
             className="btn btn-outline-secondary btn-small"
-            onClick={() => this.props.buildDeck(this.props.history, deck.get('id'))}
+            onClick={() => this.props.buildDeck(this.props.history, deck.id)}
           >
             Build
           </button>
@@ -67,7 +67,6 @@ class Decks extends Component {
 const mapStateToProps = (state) => {
   return {
     decks: selectors.getDecks(state),
-    orderLoaded: state.cards.get('orderLoaded'),
   };
 };
 

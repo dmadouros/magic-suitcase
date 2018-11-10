@@ -1,11 +1,15 @@
-import { fromJS, Map } from 'immutable';
+import {fromJS, Map, List} from 'immutable';
 
 const INITIAL_STATE = Map({
+
   cards: Map(),
   cardSets: Map(),
   deckContents: '',
   deckName: '',
-  decks: Map(),
+  decks: Map({
+    entities: Map(),
+    ids: List(),
+  }),
   isLoading: false,
   order: '',
   picklist: '',
@@ -29,11 +33,13 @@ export const getDeckName = (state) => {
 }
 
 export const getDecks = (state) => {
-  return state.cards.get('decks');
+  return state.cards.get('decks').get('ids').map(id => {
+    return getDeck(state, id);
+  }).toJS();
 }
 
 export const getDeck = (state, id) => {
-  return state.cards.get('decks').get(id);
+  return state.cards.get('decks').get('entities').get(id);
 }
 
 export default (state = INITIAL_STATE, action) => {

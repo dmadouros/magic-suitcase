@@ -4,8 +4,9 @@ module Api
 
     def index
       decks = Deck.order(name: :asc)
+      ids = decks.pluck(:id).map(&:to_s)
 
-      render json: present_decks(decks)
+      render json: {ids: ids, entities: present_decks(decks)}
     end
 
     def create
