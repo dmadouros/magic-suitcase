@@ -130,8 +130,16 @@ export function saveDeck(history) {
   };
 }
 
+export function buildDeckStarted() {
+  return {
+    type: 'BUILD_DECK_STARTED'
+  }
+}
+
 export function buildDeck(history, id) {
   return dispatch => {
+    dispatch(buildDeckStarted());
+
     api.buildDeck(id).then(resp => {
       dispatch(buildDeckSucceeded(resp.data));
       history.push('/orders/new');

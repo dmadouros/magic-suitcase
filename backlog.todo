@@ -10,8 +10,6 @@ Icebox:
  ☐ Figure out how to be more tolerant of split cards during order/picklist generation (e.g. Flower/Flourish, Flower / Flourish, Flower//Flourish, Flower // Flourish)
  ☐ Show number of cards in deck??
  ☐ show deck name on order page
- ✔ add loading icon for decks @done (18-11-10 16:09)
- ☐ add loading icon for build/order
 
 Technical Initiatives
  ☐ Use GraphQL?
@@ -20,6 +18,8 @@ Technical Initiatives
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ add loading icon for build/order @done (18-11-10 16:12) @project(Icebox)
+ ✔ add loading icon for decks @done (18-11-10 16:09) @project(Icebox)
  ✔ Single click copy for order? (like copying the repo on github) @done (18-11-10 16:03) @project(Icebox)
  ✘ Sort decks by tag (necessary if you can sort by name and filter tags??) @cancelled (18-11-10 15:49) @project(Icebox)
  ✔ Separate Show/Build buttons (visual) @done (18-11-10 15:47) @project(Icebox)

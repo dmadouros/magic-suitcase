@@ -93,8 +93,14 @@ export default (state = INITIAL_STATE, action) => {
     case 'SAVE_DECK_SUCCEEDED': {
       return state;
     }
+    case 'BUILD_DECK_STARTED': {
+      return state.set('isLoading', true);
+    }
     case 'BUILD_DECK_SUCCEEDED': {
-      return state.set('order', action.payload.order).set('picklist', action.payload.picklist).set('orderLoaded', true);
+      return state
+        .set('order', action.payload.order)
+        .set('picklist', action.payload.picklist)
+        .set('isLoading', false);
     }
     case 'SET_DECK_NAME_FILTER': {
       return state.setIn(['decks', 'filters', 'name'], action.payload.name);

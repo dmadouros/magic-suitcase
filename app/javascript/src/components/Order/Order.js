@@ -1,6 +1,7 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import ClipboardJS from 'clipboard';
+import ReactSpinner from 'react-spinjs-fix';
 
 import * as actions from "../../actions";
 import Title from "../Title/Title";
@@ -15,6 +16,10 @@ class Order extends Component {
   }
 
   render() {
+    if (this.props.isLoading) {
+      return <ReactSpinner />
+    }
+
     return (
       <div>
         <Title>Order/Picklist</Title>
