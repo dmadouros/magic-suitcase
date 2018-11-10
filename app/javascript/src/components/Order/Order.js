@@ -15,34 +15,54 @@ class Order extends Component {
     this.clipboard.destroy();
   }
 
+  renderOrder() {
+    if (this.props.order.trim() === '') {
+      return null;
+    }
+
+    return (
+      <div className="form-group row">
+        <div className="col">
+          <div className="btn-toolbar justify-content-between">
+            <h2>
+              <label htmlFor="order">Order</label>
+            </h2>
+            <div>
+              <button
+                id="copy-to-clipboard"
+                className="btn btn-outline-secondary"
+                data-clipboard-target="#order"
+              >
+                Copy to clipboard
+              </button>
+            </div>
+          </div>
+          <textarea
+            id="order"
+            className="form-control"
+            value={this.props.order}
+            rows={15}
+            readOnly
+          />
+        </div>
+      </div>
+    );
+  }
+
   render() {
     if (this.props.isLoading) {
-      return <ReactSpinner />
+      return <ReactSpinner/>
     }
 
     return (
       <div>
         <Title>Order/Picklist</Title>
+        {this.renderOrder()}
         <div className="form-group row">
           <div className="col">
-            <label htmlFor="order">Order</label>
-            <textarea
-              id="order"
-              className="form-control"
-              value={this.props.order}
-              rows={15}
-              readOnly
-            />
-          </div>
-        </div>
-        <button id="copy-to-clipboard" className="btn"
-                data-clipboard-target="#order"
-        >
-          Cut to clipboard
-        </button>
-        <div className="form-group row">
-          <div className="col">
-            <label htmlFor="picklist">Picklist</label>
+            <h2>
+              <label htmlFor="picklist">Picklist</label>
+            </h2>
             <textarea
               id="picklist"
               className="form-control"
