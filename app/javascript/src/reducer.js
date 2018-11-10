@@ -9,6 +9,9 @@ const INITIAL_STATE = Map({
   decks: Map({
     entities: Map(),
     ids: List(),
+    filters: Map({
+      name: ''
+    }),
   }),
   isLoading: false,
   order: '',
@@ -33,13 +36,24 @@ export const getDeckName = (state) => {
 }
 
 export const getDecks = (state) => {
-  return state.cards.get('decks').get('ids').map(id => {
-    return getDeck(state, id);
-  }).toJS();
+  return state.cards.get('decks').get('ids')
+    .map(id => getDeck(state, id))
+    .filter(deck => {
+      if (getDeckFilterName(state)) {
+        return (new RegExp(getDeckFilterName(state), 'i')).test(deck.get('name'));
+      } else {
+        return true;
+      }
+    })
+    .toJS();
 }
 
 export const getDeck = (state, id) => {
   return state.cards.get('decks').get('entities').get(id);
+}
+
+export const getDeckFilterName = (state) => {
+  return state.cards.get('decks').get('filters').get('name');
 }
 
 export default (state = INITIAL_STATE, action) => {
@@ -62,7 +76,10 @@ export default (state = INITIAL_STATE, action) => {
       return state.setIn(['cards', action.payload.cardId, 'quantity'], card.get('quantity') - 1)
     }
     case 'FETCH_DECKS_SUCCEEDED': {
-      return state.set('decks', fromJS(action.payload.decks));
+      return state
+        .setIn(['decks', 'entities'], fromJS(action.payload.decks.entities))
+        .setIn(['decks', 'ids'], fromJS(action.payload.decks.ids));
+      ;
     }
     case 'SET_DECK_CONTENTS': {
       return state.set('deckContents', action.payload.deckContents);
@@ -75,6 +92,9 @@ export default (state = INITIAL_STATE, action) => {
     }
     case 'BUILD_DECK_SUCCEEDED': {
       return state.set('order', action.payload.order).set('picklist', action.payload.picklist).set('orderLoaded', true);
+    }
+    case 'SET_DECK_NAME_FILTER': {
+      return state.setIn(['decks', 'filters', 'name'], action.payload.name);
     }
     default: {
       return state;

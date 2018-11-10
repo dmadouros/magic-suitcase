@@ -15,7 +15,7 @@ class Decks extends Component {
     const decks = this.props.decks.map((deck) => (
       <tr key={deck.id}>
         <td>{deck.name}</td>
-        <td>
+        <td className="text-right">
           <Link
             className="btn btn-outline-primary btn-small"
             to={`/decks/${deck.id}`}
@@ -30,7 +30,7 @@ class Decks extends Component {
           </button>
         </td>
       </tr>
-    ))
+    ));
 
     return (
       <div>
@@ -42,6 +42,14 @@ class Decks extends Component {
               to="/decks/new">
               Add Deck
             </Link>
+          </p>
+          <p className="col text-right">
+            <input
+              type="text"
+              value={this.props.filterName}
+              onChange={(e) => this.props.setDeckNameFilter(e.target.value)}
+              placeholder="Filter by name"
+            />
           </p>
         </div>
         <div className="row">
@@ -67,6 +75,7 @@ class Decks extends Component {
 const mapStateToProps = (state) => {
   return {
     decks: selectors.getDecks(state),
+    filterName: selectors.getDeckFilterName(state),
   };
 };
 

@@ -138,6 +138,15 @@ export function buildDeckSucceeded(data) {
   }
 }
 
+export function setDeckNameFilter(name) {
+  return {
+    type: 'SET_DECK_NAME_FILTER',
+    payload: {
+      name
+    }
+  }
+}
+
 /*
  * CARD_SETS
  */
