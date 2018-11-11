@@ -17,9 +17,17 @@ class Cards extends Component {
     this.props.fetchCards();
   }
 
+  onFilterCardSet = (e) => {
+    if (e.target.checked) {
+      this.props.addCardSetFilter(e.target.value);
+    } else {
+      this.props.removeCardSetFilter(e.target.value);
+    }
+  }
+
   render() {
     if (this.props.isLoading) {
-      return <ReactSpinner />
+      return <ReactSpinner/>
     }
 
     return (
@@ -28,6 +36,80 @@ class Cards extends Component {
         <div className="row">
           <div className="col">
             <div className="btn-toolbar justify-content-end mb-3">
+              <div className="mr-2">
+                <div className="dropdown">
+                  <button className="btn btn-secondary dropdown-toggle"
+                          type="button" id="dropdownMenuButton"
+                          data-toggle="dropdown" aria-haspopup="true"
+                          aria-expanded="false">
+                    Filter Card Sets
+                  </button>
+                  <div className="dropdown-menu">
+                    <form className="px-4 py-3">
+                      <div className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          onChange={this.onFilterCardSet}
+                          value="2"
+                        />
+                        <label className="form-check-label"
+                               htmlFor="dropdownCheck">
+                          DOM
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          onChange={this.onFilterCardSet}
+                          value="1"
+                        />
+                        <label className="form-check-label"
+                               htmlFor="dropdownCheck">
+                          GRN
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          onChange={this.onFilterCardSet}
+                          value="5"
+                        />
+                        <label className="form-check-label"
+                               htmlFor="dropdownCheck">
+                          M19
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          onChange={this.onFilterCardSet}
+                          value="4"
+                        />
+                        <label className="form-check-label"
+                               htmlFor="dropdownCheck">
+                          XLN
+                        </label>
+                      </div>
+                      <div className="form-check">
+                        <input
+                          type="checkbox"
+                          className="form-check-input"
+                          onChange={this.onFilterCardSet}
+                          value="3"
+                        />
+                        <label className="form-check-label"
+                               htmlFor="dropdownCheck">
+                          RIX
+                        </label>
+                      </div>
+                    </form>
+                  </div>
+                </div>
+              </div>
               <div className="input-group">
                 <div className="input-group-prepend">
                 <span className="input-group-text">

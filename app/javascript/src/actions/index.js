@@ -75,6 +75,24 @@ export function setCardNameFilter(name) {
   }
 }
 
+export function addCardSetFilter(cardSetId) {
+  return {
+    type: 'ADD_CARD_SET_FILTER',
+    payload: {
+      cardSetId
+    }
+  }
+}
+
+export function removeCardSetFilter(cardSetId) {
+  return {
+    type: 'REMOVE_CARD_SET_FILTER',
+    payload: {
+      cardSetId
+    }
+  }
+}
+
 /*
  * DECKS
  */

@@ -5,7 +5,8 @@ const INITIAL_STATE = Map({
   cards: Map({
     entities: Map(),
     filters: Map({
-      name: ''
+      name: '',
+      cardSetIds: List([]),
     })
   }),
   cardSets: Map(),
@@ -28,6 +29,13 @@ export const getCards = (state) => {
   const cardSets = state.cards.get('cardSets');
 
   return state.cards.get('cards').get('entities').valueSeq()
+    .filter(card => {
+      if (state.cards.getIn(['cards', 'filters', 'cardSetIds']).isEmpty()) {
+        return true;
+      } else {
+        return state.cards.getIn(['cards', 'filters', 'cardSetIds']).includes(card.get('card_set_id'));
+      }
+    })
     .map(card => {
       return card.set('card_set_name', cardSets.get(card.get('card_set_id')).get('abbreviation'));
     })
@@ -126,6 +134,19 @@ export default (state = INITIAL_STATE, action) => {
     }
     case 'SET_CARD_NAME_FILTER': {
       return state.setIn(['cards', 'filters', 'name'], action.payload.name);
+    }
+    case 'ADD_CARD_SET_FILTER': {
+      const cardSetIds = state.getIn(['cards', 'filters', 'cardSetIds']);
+
+      return state.setIn(['cards', 'filters', 'cardSetIds'], cardSetIds.push(action.payload.cardSetId));
+    }
+    case 'REMOVE_CARD_SET_FILTER': {
+      const cardSetIds = state.getIn(['cards', 'filters', 'cardSetIds']);
+      console.log(cardSetIds.toJS())
+      const cardSetIdIndex = cardSetIds.indexOf(action.payload.cardSetId);
+      console.log(cardSetIdIndex);
+
+      return state.setIn(['cards', 'filters', 'cardSetIds'], cardSetIds.remove(cardSetIdIndex));
     }
     default: {
       return state;

@@ -1,7 +1,6 @@
 Icebox:
  ☐ Add tags for decks
  ☐ Filter decks by tags
- ☐ Filter cards by set
  ☐ Make it so you can bulk update cards (enter the number directly)
  ☐ Add tenancy (and authentication)
  ☐ Group picklist by card set
@@ -16,6 +15,7 @@ Technical Initiatives
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Filter cards by set @done (18-11-10 17:32) @project(Icebox)
  ✔ Search by card name @started(18-11-10 16:28) @done (18-11-10 16:35) @lasted(0:07) @project(Icebox)
  ✘ Sort cards by name @cancelled (18-11-10 16:26) @project(Icebox)
  ✔ add loading icon for build/order @done (18-11-10 16:12) @project(Icebox)
