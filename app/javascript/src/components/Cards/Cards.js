@@ -38,10 +38,12 @@ class Cards extends Component {
             <div className="btn-toolbar justify-content-end mb-3">
               <div className="mr-2">
                 <div className="dropdown">
-                  <button className="btn btn-secondary dropdown-toggle"
-                          type="button" id="dropdownMenuButton"
-                          data-toggle="dropdown" aria-haspopup="true"
-                          aria-expanded="false">
+                  <button
+                    className="btn btn-outline-secondary dropdown-toggle"
+                    type="button"
+                    id="dropdownMenuButton"
+                    data-toggle="dropdown"
+                  >
                     Filter Card Sets
                   </button>
                   <div className="dropdown-menu">
