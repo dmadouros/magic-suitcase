@@ -48,61 +48,76 @@ class Cards extends Component {
                     <form className="px-4 py-3">
                       <div className="form-check">
                         <input
+                          id="filter-DOM"
                           type="checkbox"
                           className="form-check-input"
                           onChange={this.onFilterCardSet}
                           value="2"
                         />
-                        <label className="form-check-label"
-                               htmlFor="dropdownCheck">
+                        <label
+                          className="form-check-label"
+                          htmlFor="filter-DOM"
+                        >
                           DOM
                         </label>
                       </div>
                       <div className="form-check">
                         <input
+                          id="filter-GRN"
                           type="checkbox"
                           className="form-check-input"
                           onChange={this.onFilterCardSet}
                           value="1"
                         />
-                        <label className="form-check-label"
-                               htmlFor="dropdownCheck">
+                        <label
+                          className="form-check-label"
+                          htmlFor="filter-GRN"
+                        >
                           GRN
                         </label>
                       </div>
                       <div className="form-check">
                         <input
+                          id="filter-M19"
                           type="checkbox"
                           className="form-check-input"
                           onChange={this.onFilterCardSet}
                           value="5"
                         />
-                        <label className="form-check-label"
-                               htmlFor="dropdownCheck">
+                        <label
+                          className="form-check-label"
+                          htmlFor="filter-M19"
+                        >
                           M19
                         </label>
                       </div>
                       <div className="form-check">
                         <input
+                          id="filter-XLN"
                           type="checkbox"
                           className="form-check-input"
                           onChange={this.onFilterCardSet}
                           value="4"
                         />
-                        <label className="form-check-label"
-                               htmlFor="dropdownCheck">
+                        <label
+                          className="form-check-label"
+                          htmlFor="filter-XLN"
+                        >
                           XLN
                         </label>
                       </div>
                       <div className="form-check">
                         <input
+                          id="filter-RIX"
                           type="checkbox"
                           className="form-check-input"
                           onChange={this.onFilterCardSet}
                           value="3"
                         />
-                        <label className="form-check-label"
-                               htmlFor="dropdownCheck">
+                        <label
+                          className="form-check-label"
+                          htmlFor="filter-RIX"
+                        >
                           RIX
                         </label>
                       </div>
