@@ -39,7 +39,7 @@ export function incrementQuantityLocal(cardId) {
 
 export function incrementQuantity(cardId) {
   return (dispatch, getState) => {
-    const card = getState().cards.get('cards').get(cardId);
+    const card = getState().cards.get('cards').get('entities').get(cardId);
 
     api.updateCard(cardId, card.get('quantity') + 1).then(resp => {
       dispatch(incrementQuantityLocal(cardId));
@@ -58,7 +58,7 @@ export function decrementQuantityLocal(cardId) {
 
 export function decrementQuantity(cardId) {
   return (dispatch, getState) => {
-    const card = getState().cards.get('cards').get(cardId);
+    const card = getState().cards.get('cards').get('entities').get(cardId);
 
     api.updateCard(cardId, card.get('quantity') - 1).then(resp => {
       dispatch(decrementQuantityLocal(cardId));

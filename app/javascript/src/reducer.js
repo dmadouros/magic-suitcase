@@ -95,12 +95,12 @@ export default (state = INITIAL_STATE, action) => {
       return state.set('cardSets', fromJS(action.payload.cardSets));
     }
     case 'INCREMENT_QUANTITY': {
-      const card = state.get('cards').get(action.payload.cardId);
-      return state.setIn(['cards', action.payload.cardId, 'quantity'], card.get('quantity') + 1)
+      const card = state.getIn(['cards', 'entities']).get(action.payload.cardId);
+      return state.setIn(['cards', 'entities', action.payload.cardId, 'quantity'], card.get('quantity') + 1)
     }
     case 'DECREMENT_QUANTITY': {
-      const card = state.get('cards').get(action.payload.cardId);
-      return state.setIn(['cards', action.payload.cardId, 'quantity'], card.get('quantity') - 1)
+      const card = state.getIn(['cards', 'entities']).get(action.payload.cardId);
+      return state.setIn(['cards', 'entities', action.payload.cardId, 'quantity'], card.get('quantity') - 1)
     }
     case 'FETCH_DECKS_STARTED': {
       return state.set('isLoading', true);
