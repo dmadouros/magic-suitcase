@@ -3,7 +3,7 @@ module Api
     skip_before_action :verify_authenticity_token
 
     def index
-      decks = Deck.order(name: :asc)
+      decks = Deck.distinct.left_joins(:tags).includes(:tags).order(name: :asc)
       ids = decks.pluck(:id).map(&:to_s)
 
       render json: {ids: ids, entities: present_decks(decks)}
@@ -63,7 +63,8 @@ module Api
       {
         id: deck.id.to_s,
         name: deck.name,
-        contents: deck.contents
+        contents: deck.contents,
+        tags: deck.tags.pluck(:id).map(&:to_s)
       }
     end
   end
