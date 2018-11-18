@@ -4,9 +4,12 @@ import CardRow from './CardRow';
 
 const cardTable = (props) => {
   const cardRows = props.cards.valueSeq().map(card => <CardRow
-    key={card.get('id')} card={card}
-    onIncrement={props.onIncrement}
-    onDecrement={props.onDecrement}/>);
+      key={card.get('id')} card={card}
+      onIncrement={props.onIncrement}
+      onDecrement={props.onDecrement}
+      onUpdateQuantity={props.onUpdateQuantity}
+    />
+  );
 
   return (
     <div className="row">

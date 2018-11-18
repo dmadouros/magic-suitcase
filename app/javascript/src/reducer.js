@@ -102,6 +102,9 @@ export default (state = INITIAL_STATE, action) => {
       const card = state.getIn(['cards', 'entities']).get(action.payload.cardId);
       return state.setIn(['cards', 'entities', action.payload.cardId, 'quantity'], card.get('quantity') - 1)
     }
+    case 'UPDATE_QUANTITY_SUCCEEDED': {
+      return state.setIn(['cards', 'entities', action.payload.cardId, 'quantity'], action.payload.quantity)
+    }
     case 'FETCH_DECKS_STARTED': {
       return state.set('isLoading', true);
     }

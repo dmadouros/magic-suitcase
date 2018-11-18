@@ -8,6 +8,10 @@ const cardRow = (props) => {
   const canIncrement = card.get('quantity') < 8;
   const cardId = card.get('id');
 
+  const onFocus = (e) => {
+    e.target.select();
+  };
+
   return (
     <tr>
       <td>{card.get('card_set_name')}</td>
@@ -26,6 +30,8 @@ const cardRow = (props) => {
                  type="text"
                  value={card.get('quantity')}
                  style={{ display: 'inline-block', width: 40 }}
+                 onChange={(e) => props.onUpdateQuantity(cardId, e.target.value)}
+                 onFocus={onFocus}
           />
           <div className="input-group-append">
             <Button

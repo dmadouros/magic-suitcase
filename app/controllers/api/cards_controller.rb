@@ -12,10 +12,6 @@ module Api
     end
 
     def update
-      puts '*' * 80
-      puts params[:quantity]
-      puts params[:id]
-
       card = Card.find(params[:id])
       card.update(quantity: params[:quantity])
 

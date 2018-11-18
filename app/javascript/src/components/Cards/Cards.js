@@ -148,6 +148,7 @@ class Cards extends Component {
           cards={this.props.cards}
           onIncrement={this.props.incrementQuantity}
           onDecrement={this.props.decrementQuantity}
+          onUpdateQuantity={this.props.updateQuantity}
         />
       </div>
     );

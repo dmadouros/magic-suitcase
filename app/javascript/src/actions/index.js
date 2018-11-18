@@ -56,6 +56,30 @@ export function decrementQuantityLocal(cardId) {
   };
 }
 
+export function updateQuantityStarted() {
+  return {
+    type: 'UPDATE_QUANTITY_STARTED',
+  }
+}
+
+export function updateQuantitySucceeded(cardId, quantity) {
+  return {
+    type: 'UPDATE_QUANTITY_SUCCEEDED',
+    payload: {
+      cardId,
+      quantity,
+    },
+  }
+}
+
+export function updateQuantity(cardId, quantity) {
+  return dispatch => {
+    api.updateCard(cardId, parseInt(quantity)).then(resp => {
+      dispatch(updateQuantitySucceeded(cardId, parseInt(quantity)))
+    });
+  };
+}
+
 export function decrementQuantity(cardId) {
   return (dispatch, getState) => {
     const card = getState().cards.get('cards').get('entities').get(cardId);
