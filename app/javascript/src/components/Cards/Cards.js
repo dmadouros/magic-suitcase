@@ -25,6 +25,14 @@ class Cards extends Component {
     }
   }
 
+  onHideOwnedCards = (e) => {
+    if (e.target.checked) {
+      this.props.setHideOwnedCards(true);
+    } else {
+      this.props.setHideOwnedCards(false);
+    }
+  }
+
   render() {
     if (this.props.isLoading) {
       return <ReactSpinner/>
@@ -141,6 +149,21 @@ class Cards extends Component {
                   placeholder="Filter by name"
                 />
               </div>
+              <div className="form-check">
+                <input
+                  id="hide-owned-cards"
+                  type="checkbox"
+                  className="form-check-input"
+                  onChange={this.onHideOwnedCards}
+                  checked={this.props.hideOwnedCards}
+                />
+                <label
+                  className="form-check-label"
+                  htmlFor="hide-owned-cards"
+                >
+                  Hide Owned Cards?
+                </label>
+              </div>
             </div>
           </div>
         </div>
@@ -168,6 +191,7 @@ const mapStateToProps = (state) => {
     cards: selectors.getCards(state),
     isLoading: state.cards.get('isLoading'),
     filterName: selectors.getCardFilterName(state),
+    hideOwnedCards: state.cards.get('cards').get('filters').get('hideOwnedCards'),
   };
 };
 

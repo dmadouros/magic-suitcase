@@ -117,6 +117,15 @@ export function removeCardSetFilter(cardSetId) {
   }
 }
 
+export function setHideOwnedCards(hideOwnedCards) {
+  return {
+    type: 'SET_HIDE_OWNED_CARDS',
+    payload: {
+      hideOwnedCards
+    },
+  };
+}
+
 /*
  * DECKS
  */

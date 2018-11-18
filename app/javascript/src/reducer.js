@@ -7,6 +7,7 @@ const INITIAL_STATE = Map({
     filters: Map({
       name: '',
       cardSetIds: List([]),
+      hideOwnedCards: false,
     })
   }),
   cardSets: Map(),
@@ -34,6 +35,13 @@ export const getCards = (state) => {
         return true;
       } else {
         return state.cards.getIn(['cards', 'filters', 'cardSetIds']).includes(card.get('card_set_id'));
+      }
+    })
+    .filter(card => {
+      if (state.cards.getIn(['cards', 'filters', 'hideOwnedCards'])) {
+        return card.get('quantity') === 0;
+      } else {
+        return true;
       }
     })
     .map(card => {
@@ -142,6 +150,9 @@ export default (state = INITIAL_STATE, action) => {
       const cardSetIds = state.getIn(['cards', 'filters', 'cardSetIds']);
 
       return state.setIn(['cards', 'filters', 'cardSetIds'], cardSetIds.push(action.payload.cardSetId));
+    }
+    case 'SET_HIDE_OWNED_CARDS': {
+      return state.setIn(['cards', 'filters', 'hideOwnedCards'], action.payload.hideOwnedCards);
     }
     case 'REMOVE_CARD_SET_FILTER': {
       const cardSetIds = state.getIn(['cards', 'filters', 'cardSetIds']);
