@@ -33,6 +33,10 @@ class Cards extends Component {
     }
   }
 
+  onFocus = (e) => {
+    e.target.select();
+  };
+
   render() {
     if (this.props.isLoading) {
       return <ReactSpinner/>
@@ -40,139 +44,152 @@ class Cards extends Component {
 
     return (
       <div>
-        <Title>Cards</Title>
         <div className="row">
           <div className="col">
-            <div className="btn-toolbar justify-content-end mb-3">
-              <div className="mr-2">
-                <div className="dropdown">
-                  <button
-                    className="btn btn-outline-secondary dropdown-toggle"
-                    type="button"
-                    id="dropdownMenuButton"
-                    data-toggle="dropdown"
-                  >
-                    Filter Card Sets
-                  </button>
-                  <div className="dropdown-menu">
-                    <form className="px-4 py-3">
-                      <div className="form-check">
-                        <input
-                          id="filter-DOM"
-                          type="checkbox"
-                          className="form-check-input"
-                          onChange={this.onFilterCardSet}
-                          value="2"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="filter-DOM"
-                        >
-                          DOM
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          id="filter-GRN"
-                          type="checkbox"
-                          className="form-check-input"
-                          onChange={this.onFilterCardSet}
-                          value="1"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="filter-GRN"
-                        >
-                          GRN
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          id="filter-M19"
-                          type="checkbox"
-                          className="form-check-input"
-                          onChange={this.onFilterCardSet}
-                          value="5"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="filter-M19"
-                        >
-                          M19
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          id="filter-XLN"
-                          type="checkbox"
-                          className="form-check-input"
-                          onChange={this.onFilterCardSet}
-                          value="4"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="filter-XLN"
-                        >
-                          XLN
-                        </label>
-                      </div>
-                      <div className="form-check">
-                        <input
-                          id="filter-RIX"
-                          type="checkbox"
-                          className="form-check-input"
-                          onChange={this.onFilterCardSet}
-                          value="3"
-                        />
-                        <label
-                          className="form-check-label"
-                          htmlFor="filter-RIX"
-                        >
-                          RIX
-                        </label>
-                      </div>
-                    </form>
+            <Title>Cards</Title>
+          </div>
+        </div>
+
+        <div className="row no-gutters justify-content-end pb-2">
+          <div className="col-2 text-right pl-2">
+            <div className="dropdown">
+              <button
+                className="btn btn-outline-secondary dropdown-toggle"
+                type="button"
+                id="dropdownMenuButton"
+                data-toggle="dropdown"
+              >
+                Filter Card Sets
+              </button>
+              <div className="dropdown-menu">
+                <form className="pl-2">
+                  <div className="form-check">
+                    <input
+                      id="filter-DOM"
+                      type="checkbox"
+                      className="form-check-input"
+                      onChange={this.onFilterCardSet}
+                      value="2"
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="filter-DOM"
+                    >
+                      DOM
+                    </label>
                   </div>
-                </div>
-              </div>
-              <div className="input-group">
-                <div className="input-group-prepend">
-                <span className="input-group-text">
-                  <FontAwesomeIcon icon="search"/>
-                </span>
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={this.props.filterName}
-                  onChange={(e) => this.props.setCardNameFilter(e.target.value)}
-                  placeholder="Filter by name"
-                />
-              </div>
-              <div className="form-check">
-                <input
-                  id="hide-owned-cards"
-                  type="checkbox"
-                  className="form-check-input"
-                  onChange={this.onHideOwnedCards}
-                  checked={this.props.hideOwnedCards}
-                />
-                <label
-                  className="form-check-label"
-                  htmlFor="hide-owned-cards"
-                >
-                  Hide Owned Cards?
-                </label>
+                  <div className="form-check">
+                    <input
+                      id="filter-GRN"
+                      type="checkbox"
+                      className="form-check-input"
+                      onChange={this.onFilterCardSet}
+                      value="1"
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="filter-GRN"
+                    >
+                      GRN
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      id="filter-M19"
+                      type="checkbox"
+                      className="form-check-input"
+                      onChange={this.onFilterCardSet}
+                      value="5"
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="filter-M19"
+                    >
+                      M19
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      id="filter-XLN"
+                      type="checkbox"
+                      className="form-check-input"
+                      onChange={this.onFilterCardSet}
+                      value="4"
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="filter-XLN"
+                    >
+                      XLN
+                    </label>
+                  </div>
+                  <div className="form-check">
+                    <input
+                      id="filter-RIX"
+                      type="checkbox"
+                      className="form-check-input"
+                      onChange={this.onFilterCardSet}
+                      value="3"
+                    />
+                    <label
+                      className="form-check-label"
+                      htmlFor="filter-RIX"
+                    >
+                      RIX
+                    </label>
+                  </div>
+                </form>
               </div>
             </div>
           </div>
+          <div className="col-3 pl-2">
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <span className="input-group-text">
+                  <FontAwesomeIcon icon="search"/>
+                </span>
+              </div>
+              <input
+                type="text"
+                className="form-control"
+                value={this.props.filterName}
+                onChange={(e) => this.props.setCardNameFilter(e.target.value)}
+                placeholder="Filter by name"
+                onFocus={this.onFocus}
+              />
+            </div>
+          </div>
+          <div className="col-3 pl-2">
+            <div className="input-group">
+              <div className="input-group-prepend">
+                <div className="input-group-text">
+                  <input
+                    id="hide-owned-cards"
+                    type="checkbox"
+                    onChange={this.onHideOwnedCards}
+                    checked={this.props.hideOwnedCards}
+                  />
+                </div>
+              </div>
+              <label
+                className="form-control"
+                htmlFor="hide-owned-cards"
+              >
+                Hide Owned Cards?
+              </label>
+            </div>
+          </div>
         </div>
-        <CardTable
-          cards={this.props.cards}
-          onIncrement={this.props.incrementQuantity}
-          onDecrement={this.props.decrementQuantity}
-          onUpdateQuantity={this.props.updateQuantity}
-        />
+        <div className="row">
+          <div className="col">
+            <CardTable
+              cards={this.props.cards}
+              onIncrement={this.props.incrementQuantity}
+              onDecrement={this.props.decrementQuantity}
+              onUpdateQuantity={this.props.updateQuantity}
+            />
+          </div>
+        </div>
       </div>
     );
   }

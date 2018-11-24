@@ -15,7 +15,7 @@ class Decks extends Component {
 
   render() {
     if (this.props.isLoading) {
-      return <ReactSpinner />
+      return <ReactSpinner/>
     }
 
     const decks = this.props.decks.map((deck) => (
@@ -40,31 +40,40 @@ class Decks extends Component {
       </tr>
     ));
 
+    const onFocus = (e) => {
+      e.target.select();
+    };
+
     return (
       <div>
-        <Title>Decks</Title>
         <div className="row">
           <div className="col">
-            <div className="btn-toolbar justify-content-between mb-3">
-              <Link
-                className="btn btn-outline-dark"
-                to="/decks/new">
-                Add Deck
-              </Link>
-              <div className="input-group">
-                <div className="input-group-prepend">
+            <Title>Decks</Title>
+          </div>
+        </div>
+        <div className="row no-gutters pb-2">
+          <div className="col">
+            <Link
+              className="btn btn-outline-dark"
+              to="/decks/new">
+              Add Deck
+            </Link>
+          </div>
+          <div className="col-3 pl-2">
+            <div className="input-group">
+              <div className="input-group-prepend">
                 <span className="input-group-text">
                   <FontAwesomeIcon icon="search"/>
                 </span>
-                </div>
-                <input
-                  type="text"
-                  className="form-control"
-                  value={this.props.filterName}
-                  onChange={(e) => this.props.setDeckNameFilter(e.target.value)}
-                  placeholder="Filter by name"
-                />
               </div>
+              <input
+                type="text"
+                className="form-control"
+                value={this.props.filterName}
+                onChange={(e) => this.props.setDeckNameFilter(e.target.value)}
+                placeholder="Filter by name"
+                onFocus={onFocus}
+              />
             </div>
           </div>
         </div>
