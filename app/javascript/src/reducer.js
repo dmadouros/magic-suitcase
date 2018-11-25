@@ -91,6 +91,14 @@ export const getCardFilterName = (state) => {
   return state.cards.get('cards').get('filters').get('name');
 }
 
+export const getCardSets = (state) => {
+  return state.cards.get('cardSets')
+    .valueSeq()
+    .toList()
+    .sortBy(cardSet => cardSet.get('abbreviation'))
+    .toJS();
+}
+
 export default (state = INITIAL_STATE, action) => {
   switch (action.type) {
     case 'FETCH_CARDS_STARTED': {
