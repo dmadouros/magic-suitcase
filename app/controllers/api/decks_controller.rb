@@ -6,7 +6,7 @@ module Api
       decks = Deck.order(name: :asc)
       ids = decks.pluck(:id).map(&:to_s)
 
-      render json: {ids: ids, entities: present_decks(decks)}
+      render json: { ids: ids, entities: present_decks(decks) }
     end
 
     def create
@@ -48,7 +48,7 @@ module Api
         "#{line_item[:quantity]} #{line_item[:name]} #{line_item[:card_set]}"
       end.join("\n")
 
-      render json: {order: order, picklist: picklist}
+      render json: { order: order, picklist: picklist }
     end
 
     private
