@@ -10,10 +10,16 @@ module Api
     end
 
     def create
+      canonicalize_split_card_name = ->(line) {
+        match = /(.*?)\s?\/+\s?(.*)/.match(line)
+        match ? "#{match[1]} // #{match[2]}" : line
+      }
+
       contents = params[:deckContents]
         .split("\n")
         .map(&:strip)
         .compact
+        .map(&canonicalize_split_card_name)
         .join("\n")
 
       if Deck.create(name: params[:name], contents: contents)
