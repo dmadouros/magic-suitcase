@@ -1,12 +1,9 @@
 Icebox:
- ☐ Add tags for decks
+ ☐ Add tags for decks @started(18-11-24 18:03)
  ☐ Filter decks by tags
- ☐ Make it so you can bulk update cards (enter the number directly)
+ ☐ Show deck name on order page
  ☐ Add tenancy (and authentication)
- ☐ Group picklist by card set
- ☐ Figure out how to be more tolerant of split cards during order/picklist generation (e.g. Flower/Flourish, Flower / Flourish, Flower//Flourish, Flower // Flourish)
  ☐ Show number of cards in deck??
- ☐ show deck name on order page
 
 Technical Initiatives
  ☐ Use GraphQL?
@@ -15,6 +12,9 @@ Technical Initiatives
 
 ＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿＿
 Archive:
+ ✔ Group picklist by card set @done (18-11-24 18:12) @project(Icebox)
+ ✔ Figure out how to be more tolerant of split cards during order/picklist generation (e.g. Flower/Flourish, Flower / Flourish, Flower//Flourish, Flower // Flourish) @done (18-11-24 17:40) @project(Icebox)
+ ✔ Make it so you can bulk update cards (enter the number directly) @done (18-11-18 16:20) @project(Icebox)
  ✔ Filter cards by set @done (18-11-10 17:32) @project(Icebox)
  ✔ Search by card name @started(18-11-10 16:28) @done (18-11-10 16:35) @lasted(0:07) @project(Icebox)
  ✘ Sort cards by name @cancelled (18-11-10 16:26) @project(Icebox)

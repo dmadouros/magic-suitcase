@@ -46,13 +46,14 @@ module Api
 
       results = LoadDeck.new.load_deck(deck_list)
 
-      order = results[:order].map do |line_item|
-        "#{line_item[:quantity]} #{line_item[:name]}"
-      end.join("\n")
+      order = results[:order]
+        .map {|line_item| "#{line_item[:quantity]} #{line_item[:name]}"}
+        .join("\n")
 
-      picklist = results[:picklist].map do |line_item|
-        "#{line_item[:quantity]} #{line_item[:name]} #{line_item[:card_set]}"
-      end.join("\n")
+      picklist = results[:picklist]
+        .sort_by {|line_item| [line_item[:card_set], line_item[:name]]}
+        .map {|line_item| "#{line_item[:quantity]} #{line_item[:name]} #{line_item[:card_set]}"}
+        .join("\n")
 
       render json: { order: order, picklist: picklist }
     end
